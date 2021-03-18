@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "pure_beurre/base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+</head>
+<body>
+    <h1>Inscription</h1>
+    <form action="{% url 'register_view' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Valider</button>
+    </form>
+
+
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "pure_beurre/base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+</head>
+<body>
+    <h1>Pure beurre</h1>
+
+    <form action="{% url 'index_view' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Valider</button>
+    </form>
+</body>
+{% endblock %}
+</html>

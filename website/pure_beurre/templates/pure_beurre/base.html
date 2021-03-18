@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h3><a href="{% url 'index_view' %}">Accueil</a></h3>
+
+    <form action="{% url 'index_view' %}" method="post">
+        {% csrf_token %}
+        {{ forma }}
+    </form>
+
+    {% if request.user.is_authenticated %}
+        <h3><a href="{% url 'logout_view' %}">Deconnexion</a></h3>
+
+    {% else %}
+        <h3><a href="{% url 'login_view' %}">Connexion</a></h3>
+
+    {% endif %}
+</body>
+{% block content %}{% endblock %}
+</html>

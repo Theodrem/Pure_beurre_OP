@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "pure_beurre/base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form action="{% url 'login_view' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Valider</button>
+    </form>
+    <h3><a href="{% url 'register_view' %}">Créer un compte</a></h3>
+</body>
+{% endblock %}
+</html>
+

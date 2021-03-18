@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "pure_beurre/base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Aliment</title>
+</head>
+<body>
+    <h1>{{ prod.name }} de la marque {{ prod.brand }}</h1>
+    <p><img src="{{ prod.image }}" alt=""></p>
+    <h3>{{ prod.nutriscore }}</h3>
+    <h3>{{ prod.url_opff }}</h3>
+    <p>{{ prod.ingredients }}</p>
+    {% for sub in subs %}
+        {% if  forloop.counter <= 6 %}
+            <h3>{{ sub.name }}</h3>
+            <p>{{ sub.nutriscore }}</p>
+            <p><img src="{{ sub.image }}" alt=""></p>
+        {% endif %}
+        {% endfor %}
+
+
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,40 @@
+LIST_CATEGORIES = [
+    "Snacks",
+    "Viandes",
+    "Fromages",
+    "Produits à tartiner",
+    "Biscuits et gateaux",
+    "Charcuteries",
+    "Petit-déjeuners",
+    "Fruits",
+    "Desserts",
+    "Poissons",
+    "Légumes",
+    "Biscuits",
+    "Boissons aux fruits",
+    "Chocolats",
+    "Pains",
+    "Yaourts",
+    "Fruits à coques et dérives",
+    "Jus de fruits",
+    "Huiles",
+    "Vins",
+    "Légumineuses",
+    "Fruits",
+    "Pâtisseries",
+    "Viennoiseries",
+    "Cereales pour petit-dejeuner"
+    "Bonbons",
+    "Glaces et sorbets",
+    "Bieres",
+    "Cafés",
+    "Laits",
+]
+
+NUTISCORE_SUB = {
+    "a": "a",
+    "b": "a",
+    "c": ["a", "b"],
+    "d": ["a", "b", "c"],
+    "e": ["a", "b", "c", "d"]
+}

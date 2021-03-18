@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "pure_beurre/base.html" %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Mon compte</title>
+</head>
+<body>
+    {% if request.user.is_authenticated %}
+
+    <h1>Salut {{ username }}</h1>
+
+
+    {% else %}
+
+    <h3><a href="{% url 'login_view' %}">Connexion</a></h3>
+
+    {% endif %}
+
+</body>
+{% endblock %}
+</html>
