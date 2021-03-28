@@ -27,33 +27,33 @@ class Results(View):
     template_name = "pure_beurre/results.html"
 
     def get(self, request):
-        cat = None
-        p = None
+        product = None
+        category = None
         food = request.GET.get("food")
         try:
-            cat = Category.objects.get(name__icontains=food)  # contains pour filtrer
-        except Category.DoesNotExist:
+            categories = Category.objects.all().filter(name__icontains=food).order_by("name")
+            category = categories[0]
+        except (Category.DoesNotExist, IndexError):
             try:
                 products = Product.objects.all().filter(name__icontains=food).order_by("name")
-                try:
-                    p = products[0]
-                    cat = p.category
-                except IndexError:
-                    pass
-            except Product.DoesNotExist:
-                pass
+                product = products[0]
+                categories = product.category
+            except (Product.DoesNotExist, IndexError):
+                categories = None
+                product = None
 
-        if p is not None:
-            list_product = Product.objects.all().filter(category=cat, nutriscore__lte=p.nutriscore).order_by("nutriscore")
-        elif cat is not None:
-            list_product = Product.objects.all().filter(category=cat).order_by("nutriscore")
-        else:
+        if product is not None:
+            list_product = Product.objects.all().filter(category=categories, nutriscore__lte=product.nutriscore).order_by("nutriscore")
+        elif categories is None and product is None:
             list_product = Product.objects.all().order_by("nutriscore")
+        else:
+            list_product = Product.objects.all().filter(category=category).order_by("nutriscore")
+
         paginator = Paginator(list_product, 18)  # Show 6 products per page
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
-        return render(request, self.template_name, {'products': products, 'cat': cat, 'p': p})
+        return render(request, self.template_name, {'products': products, 'c': category, 'p': product, 'food': food})
 
     @method_decorator(login_required, name='dispatch')
     def post(self, request):

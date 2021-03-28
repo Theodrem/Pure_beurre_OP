@@ -26,7 +26,7 @@
                 {% if p is not None %}
                 <h1 class="text-white font-weight-bold">{{ p.name }}</h1>
                 {% else  %}
-                <h1 class="text-white font-weight-bold">{{ cat.name }}</h1>
+                <h1 class="text-white font-weight-bold">{{ c.name }}</h1>
                 {% endif %}
             </div>
         </div>
@@ -79,9 +79,9 @@
                             {% endif %}
                             {% for i in products.paginator.page_range %}
                                 {% if products.number == i %}
-                                    <li class="page-item"><a href="" class="page-link"><span class="page-text">{{ i }} <span class="page-text sr-only">(current)</span></span></a></li>
+                                    <li class="page-item"><a href="" class="page-link"><span class="page-text">{{ i }}<span class="page-text sr-only">(current)</span></span></a></li>
                                 {% else %}
-                                <li class="page-item"><a href="?page={{ i }}" class="page-link text-warning">{{ i }}</a></li>
+                                <li class="page-item"><a href="?page={{ i }}&food={{ food|urlencode }}" class="page-link text-warning">{{ i }}</a></li>
                                 {% endif %}
                                 {% endfor %}
                                 {% if products.has_next %}
