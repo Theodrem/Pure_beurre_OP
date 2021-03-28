@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", max_length=100)
-    first_name = forms.CharField(label="Prenom", max_length=100, required=False)
-    last_name = forms.CharField(label="Nom", max_length=100, required=False)
-    email = forms.EmailField(label="Email", max_length=100)
-    password = forms.CharField(label="Mot de passe", max_length=100, widget=forms.PasswordInput)
-    repassword = forms.CharField(label=" Confirmation mot de passe", max_length=100, widget=forms.PasswordInput)
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    first_name = forms.CharField(label="Prenom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    last_name = forms.CharField(label="Nom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    repassword = forms.CharField(label=" Confirmation mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean(self):
         cleaned_data = super(RegisterForm, self).clean()
@@ -20,7 +20,7 @@ class RegisterForm(forms.Form):
     def clean_email(self):
         username = self.cleaned_data.get("username")
         email = self.cleaned_data.get("email")
-        if email and User.objects.filter(email=email).exclude(username=username).count():
+        if email and User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email déjà utilisé.")
         return email
 
@@ -29,14 +29,14 @@ class RegisterForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get("username")
         email = self.cleaned_data.get("email")
-        if username and User.objects.filter(username=username).exclude(email=email).count():
+        if username and User.objects.filter(username=username).exists():
             raise forms.ValidationError("Nom d'utilisateur déjà utilisé.")
         return username
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", max_length=100)
-    password = forms.CharField(label="Mot de passe", max_length=100, widget=forms.PasswordInput)
+    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean_username(self):
         username = self.cleaned_data["username"]

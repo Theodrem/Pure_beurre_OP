@@ -3,19 +3,54 @@
 {% extends "pure_beurre/base.html" %}
 
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <title>Inscription</title>
-</head>
-<body>
-    <h1>Inscription</h1>
-    <form action="{% url 'register_view' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Valider</button>
-    </form>
+{% load static %}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
+        <title>Accueil</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'pure_beurre/css/register_style.css' %}" rel="stylesheet">
+<body id="page">
+    <div class="container content text-center">
+        <div class="row">
+            <div class="col-md-12">
+               <h1><b>Inscription</b></h1>
+            </div>
+        </div>
+        <div class="row line">
+            <div class="col-md-6 text-left">
+                <p><img src="{% static 'pure_beurre\assets\img\colette-4.jpg' %}" alt=""></p>
+            </div>
+            <div class="col-md-6">
+               <form action="{% url 'register_view' %}" method="post">
+                   {% csrf_token %}
+                   {{ form.as_p }}
+                   <button type="submit" class="btn btn-success">Valider</button>
+                </form>
+                <h6 class="connexion">Deja un compte?<a href="{% url 'login_view' %}" id="connexion">    Connexion</a></h6>
+            </div>
+        </div>
+    </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'pure_beurre/js/scripts_page.js' %}"></script>
 </body>
 {% endblock %}
 </html>

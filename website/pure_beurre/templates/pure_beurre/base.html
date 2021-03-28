@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+{% block content %}{% endblock %}
+{% load static %}
 <head>
-    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
+
+        <!-- Font Awesome icons (free version)-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'pure_beurre/css/style_base.css' %}" rel="stylesheet">
+
 </head>
 <body>
-    <h3><a href="{% url 'index_view' %}">Accueil</a></h3>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container id=nav">
+            <div id="tite">
+                <a class="navbar-brand js-scroll-trigger" href="{% url 'index_view' %}">
+                    <img src="{% static 'pure_beurre/assets/img/logo_pur_beurre.png' %}" alt="" id="logo">
+                </a>
+                <a class="navbar-brand js-scroll-trigger" href="{% url 'index_view' %}" id="title_nav">PURE BEURRE</a>
+            </div>
+            <div id="link">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'dashboard_view' user.username %}"><i class="fas fa-user fa-2x"></i></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout_view' %}"><i class="fas fa-sign-out-alt fa-2x"></i></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'my_products' %}"><i class="fas fa-carrot fa-2x"></i></a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login_view' %}"><i class="fas fa-user fa-2x"></i></a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login_view' %}"><i class="fas fa-carrot fa-2x"></i></a></li>
+                        {% endif %}
 
-    <form action="{% url 'index_view' %}" method="post">
-        {% csrf_token %}
-        {{ forma }}
-    </form>
 
-    {% if request.user.is_authenticated %}
-        <h3><a href="{% url 'logout_view' %}">Deconnexion</a></h3>
-
-    {% else %}
-        <h3><a href="{% url 'login_view' %}">Connexion</a></h3>
-
-    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <footer class="py-3">
+        <div class="container foot">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                     <a href="#" class="text-foot">Mentions légales</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a href="{% url 'index_view' %}#contact" class="text-foot">Contact</a>
+                </div>
+            </div>
+           </div>
+    </footer>
 </body>
-{% block content %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'pure_beurre/js/scripts_page.js' %}"></script>
 </html>

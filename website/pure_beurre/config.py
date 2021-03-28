@@ -30,11 +30,3 @@ LIST_CATEGORIES = [
     "Cafés",
     "Laits",
 ]
-
-NUTISCORE_SUB = {
-    "a": "a",
-    "b": "a",
-    "c": ["a", "b"],
-    "d": ["a", "b", "c"],
-    "e": ["a", "b", "c", "d"]
-}

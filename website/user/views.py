@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -8,10 +9,14 @@ from django.utils.decorators import method_decorator
 
 from .form import RegisterForm, LoginForm
 
+
 @method_decorator(login_required, name='dispatch')
 class Dashboard(View):
     def get(self, request, username):
-        return render(request, "user/dashboard.html", {'username': username})
+        user = User.objects.get(username=username)
+        email = user.email
+        return render(request, "user/dashboard.html", {'username': username,
+                                                       'email': email})
 
 
 class Register(View):
@@ -58,8 +63,8 @@ class Login(View):
         if request.method == 'POST':
             form = self.form(request.POST)
             if form.is_valid():
-                username = request.POST['username']
-                password = request.POST['password']
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
@@ -67,7 +72,8 @@ class Login(View):
                     return HttpResponseRedirect('/dashboard/%s' % username)
 
                 else:
-                    pass  # Mot de passe ou username incorrect
+                    messages.add_message(request, messages.INFO, 'Le Mot de passe ne correspond pas.')
+
         else:
             form = self.form()
 

@@ -3,25 +3,73 @@
 {% extends "pure_beurre/base.html" %}
 
 {% block content %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Aliment</title>
+    <title>{{ cat.name }}</title>
+        <link rel="icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
+
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+        <!-- Third party plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'pure_beurre/css/detail_style.css' %}" rel="stylesheet">
 </head>
-<body>
-    <h1>{{ prod.name }} de la marque {{ prod.brand }}</h1>
-    <p><img src="{{ prod.image }}" alt=""></p>
-    <h3>{{ prod.nutriscore }}</h3>
-    <h3>{{ prod.url_opff }}</h3>
-    <p>{{ prod.ingredients }}</p>
-    {% for sub in subs %}
-        {% if  forloop.counter <= 6 %}
-            <h3>{{ sub.name }}</h3>
-            <p>{{ sub.nutriscore }}</p>
-            <p><img src="{{ sub.image }}" alt=""></p>
-        {% endif %}
-        {% endfor %}
+<body id="page">
+    <div class="head container-fluid text-center">
+        <div class="row">
+            <div class="col-md-12 img">
+                <p><img src="{{ prod.image }}" alt=""></p>
+            </div>
+            <div class="col-md-12">
+                <h1 class="font-weight-bold text-white">{{ prod.name }} de la marque {{ prod.brand }}</h1>
+            </div>
+        </div>
+    </div>
 
+    <div class="container">
 
+        <div class="row line">
+            <div class="col-md-8 ing text-center">
+                <p><b>Les Ingredients<br><br>{{ prod.ingredients }}</b></p>
+            </div>
+            <div class="col-md-4 nutri text-center">
+                {% if  prod.nutriscore == "a" %}
+                    <p><img src="{% static 'pure_beurre\assets\img\nutriscore_a.jpg' %}" alt="" class="nutri_image"></p>
+
+                {% elif  prod.nutriscore == "b" %}
+                    <p><img src="{% static 'pure_beurre\assets\img\nutriscore_b.jpg' %}" alt="" class="nutri_image"></p>
+
+                {% elif  prod.nutriscore == "c" %}
+                    <p><img src="{% static 'pure_beurre\assets\img\nutriscore_c.jpg' %}" alt="" class="nutri_image"></p>
+
+                {% elif  prod.nutriscore == "d" %}
+                    <p><img src="{% static 'pure_beurre\assets\img\nutriscore_d.jpg' %}" alt="" class="nutri_image"></p>
+
+                {% elif prod.nutriscore == "e" %}
+                    <p><img src="{% static 'pure_beurre\assets\img\nutriscore_e.jpg' %}" alt="" class="nutri_image"></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row line">
+            <div class="col-md-12 text-center">
+                <button type="button" class="btn btn-dark btn-lg btn-block"><a href="{{ prod.url_opff }}" class="button text-white text-decoration-none">Voir la fiche d'OpenFoodFacts</a></button>
+            </div>
+        </div>
+    </div>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'pure_beurre/js/scripts_page.js' %}"></script>
 </body>
 {% endblock %}
 </html>

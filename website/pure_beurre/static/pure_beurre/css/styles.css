@@ -1,0 +1,105 @@
+#contact {
+    background: #C45525;
+}
+
+#description {
+    margin-top: 20px;
+}
+
+section {
+    margin-top: 50px;
+}
+
+.title {
+    font-family: "Open Sans", sans-serif;
+}
+
+
+.btn-light {
+    background-color: #DE9440 !important;
+}
+
+.texts {
+    font-family: "Scope One", sans-serif;
+}
+
+
+#col_img {
+    height: 400px;
+}
+
+#rat_img {
+    width: 500px;
+    height: 400px;
+}
+
+#mail:hover {
+    font-weight: bold;
+}
+
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead h1 {
+  font-size: 2.25rem;
+}
+
+@media (min-width: 992px) {
+  header.masthead {
+    height: 100vh;
+    min-height: 40rem;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+
+  }
+
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+
+#mainNav.navbar-scrolled {
+    background-color: rgba(255,255,255,0.6);
+}
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
+}
+
+
+.ml-auto,
+.mx-auto {
+  margin-left: auto !important;
+}
+}
+
+@media (max-width: 800px) {
+    #col_img {
+    height: 200px;
+}
+
+#rat_img {
+    width: 250px;
+    height: 200px;
+}
+
+}
+
+@media (max-width: 1200px) {
+    #col_img {
+    height: 300px;
+}
+
+#rat_img {
+    width: 370px;
+    height: 300px;
+}
+

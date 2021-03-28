@@ -1,5 +1,6 @@
 # coding=utf8
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -17,5 +18,8 @@ class Product(models.Model):
     opff_id = models.BigIntegerField(null=True)
 
 
+class Substitute(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

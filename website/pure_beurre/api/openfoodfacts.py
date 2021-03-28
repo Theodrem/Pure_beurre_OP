@@ -1,8 +1,8 @@
 # coding=utf8
 import requests
 
-from .models import Category, Product
-from .config import LIST_CATEGORIES
+from ..models import Category, Product
+from ..config import LIST_CATEGORIES
 
 """
 API connection data
@@ -65,6 +65,7 @@ def insert_data_from_openfoodfacts():
                                     opff_id=opff_id,
                                     category_id=cat.id)
                         p.save()
+
                     except Category.DoesNotExist:
                         pass
             except IndexError:
