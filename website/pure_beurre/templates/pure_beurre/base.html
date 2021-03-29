@@ -13,7 +13,7 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'pure_beurre/css/style_base.css' %}" rel="stylesheet">
+        <link href="{% static 'pure_beurre/scss/style_base.scss' %}" rel="stylesheet">
 
 </head>
 <body>
@@ -38,8 +38,6 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login_view' %}"><i class="fas fa-user fa-2x"></i></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'login_view' %}"><i class="fas fa-carrot fa-2x"></i></a></li>
                         {% endif %}
-
-
                     </ul>
                 </div>
             </div>

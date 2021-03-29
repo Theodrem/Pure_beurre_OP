@@ -155,7 +155,7 @@ class MyProductsTest(TestCase):
 
     def test_my_product_page(self):
         self.client.login(username='username',
-                               password='password')
+                          password='password')
         list_product = Product.objects.all().filter(substitute__user=self.user)
         response = self.client.get(reverse('my_products'),
                                    {"products": list_product})
