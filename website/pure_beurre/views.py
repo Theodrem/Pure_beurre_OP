@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.paginator import Paginator
 from django.views import View
 
@@ -55,7 +55,6 @@ class Results(View):
 
         return render(request, self.template_name, {'products': products, 'c': category, 'p': product, 'food': food})
 
-    @method_decorator(login_required, name='dispatch')
     def post(self, request):
         food_id = request.POST['food_id']
         current_user = request.user
@@ -71,7 +70,11 @@ class DetailProduct(View):
     template_name = "pure_beurre/food_detail.html"
 
     def get(self, request, id):
-        prod = Product.objects.get(id=id)
+        try:
+            prod = Product.objects.get(id=id)
+        except Product.DoesNotExist:
+            raise Http404
+
         return render(request, self.template_name, {"prod": prod})
 
 
@@ -82,7 +85,7 @@ class MyProducts(View):
     def get(self, request):
         current_user = request.user
         list_product = Product.objects.all().filter(substitute__user=current_user)
-        paginator = Paginator(list_product, 18)  # Show 6 products per page
+        paginator = Paginator(list_product, 18)
         page = request.GET.get('page')
         products = paginator.get_page(page)
         return render(request, self.template_name, {'products': products})

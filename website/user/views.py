@@ -63,8 +63,8 @@ class Login(View):
         if request.method == 'POST':
             form = self.form(request.POST)
             if form.is_valid():
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
+                username = form.data.get('username')
+                password = form.data.get('password')
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
