@@ -5,7 +5,7 @@
 {% block content %}
 {% load static %}
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ cat.name }}</title>
         <link rel="icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
 
@@ -18,9 +18,9 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'pure_beurre/css/detail_style.scss' %}" rel="stylesheet">
+        <link href="{% static 'pure_beurre/css/detail_style.css' %}" rel="stylesheet">
 </head>
-<body id="page">
+<body>
     <div class="head container-fluid text-center">
         <div class="row">
             <div class="col-md-12 img">
@@ -31,14 +31,12 @@
             </div>
         </div>
     </div>
-
     <div class="container">
-
         <div class="row line">
-            <div class="col-md-8 ing text-center">
+            <div class="col-md-6 ing text-center">
                 <p><b>Les Ingredients<br><br>{{ prod.ingredients }}</b></p>
             </div>
-            <div class="col-md-4 nutri text-center">
+            <div class="col-md-6 nutri text-center">
                 {% if  prod.nutriscore == "a" %}
                     <p><img src="{% static 'pure_beurre\assets\img\nutriscore_a.jpg' %}" alt="" class="nutri_image"></p>
 

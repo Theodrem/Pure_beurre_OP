@@ -17,7 +17,7 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'pure_beurre/css/results_style.scss' %}" rel="stylesheet">
+        <link href="{% static 'pure_beurre/css/results_style.css' %}" rel="stylesheet">
 </head>
 <body id="page">
     <div class="tete container-fluid text-center">
@@ -31,29 +31,32 @@
             </div>
         </div>
     </div>
-    <div class="sub container">
+    <div class="sub container align-center">
         <div class="row">
             <div class="col-md-12 title text-center">
-                <h1 id="liste">Liste des substituts </h1>
+                <h1 id="liste">Liste des substituts</h1>
             </div>
         </div>
-        <div class="row list">
+        <div class="row list text-center">
             {% for p in products %}
             {% csrf_token %}
             <div class="col-md-4 text-center">
-                {% if p.nutriscore == "a" %}
-                    <button class="btn btn-success"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
-                {% elif p.nutriscore == "b" %}
-                    <button class="btn btn-info"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
-                {% elif p.nutriscore == "c" %}
-                    <button class="btn btn-warning"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
-                {% elif p.nutriscore == "d" %}
-                    <button class="btn btn-light"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
-                {% else %}
-                    <button class="btn btn-danger"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
-                {% endif %}
-                    <h5>{{ p.name }}</h5>
-
+                <div class="card text-white" style="background: #DE9440;">
+                  <div class="card-header">
+                     {% if p.nutriscore == "a" %}
+                        <button class="btn btn-success nutri"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
+                    {% elif p.nutriscore == "b" %}
+                        <button class="btn btn-info nutri"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
+                    {% elif p.nutriscore == "c" %}
+                        <button class="btn btn-warning"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
+                    {% elif p.nutriscore == "d" %}
+                        <button class="btn btn-light nutri"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
+                    {% else %}
+                        <button class="btn btn-danger nutri"><a href="{% url 'food_detail' p.id %}" class="text-white text-capitalize text-decoration-none">{{ p.nutriscore }}</a></button>
+                    {% endif %}
+                      <h5>{{ p.name }}</h5>
+                  </div>
+                <div class="card-body">
                     <p><a href="{% url 'food_detail' p.id %}"><img src="{{ p.image }}" alt="" id="object_img"></a></p>
                     {% if request.user.is_authenticated %}
                         <form class="save-link" action="{% url 'results_view' %}" method="post">
@@ -64,6 +67,8 @@
                             </button>
                         </form>
                     {% endif %}
+                     </div>
+                </div>
             </div>
             {% endfor %}
         </div>

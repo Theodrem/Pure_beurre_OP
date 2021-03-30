@@ -5,11 +5,7 @@
 {% block content %}
 {% load static %}
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <title>Accueil</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
@@ -31,7 +27,7 @@
         </div>
         <div class="row line">
             <div class="col-md-6 text-left">
-                <p><img src="{% static 'pure_beurre\assets\img\colette-4.jpg' %}" alt=""></p>
+                <p><img src="{% static 'pure_beurre\assets\img\colette-4.jpg' %}" alt="" id="colette"></p>
             </div>
             <div class="col-md-6">
                <form action="{% url 'register_view' %}" method="post">

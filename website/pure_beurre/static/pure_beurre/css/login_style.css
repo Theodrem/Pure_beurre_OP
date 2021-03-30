@@ -1,0 +1,67 @@
+#page {
+    background-color: #DE9440;
+}
+
+.form-control {
+    margin-top: 20px;
+}
+
+p {
+    font-family: "Scope One", sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.line {
+    margin-top: 90px !important;
+    margin: 8%;
+    background: #fff;
+    padding: 4rem 1rem 4rem 1rem;
+    box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
+
+}
+
+.content {
+    margin-top: 100px !important;
+}
+
+form {
+    margin-top: 120px !important;
+}
+
+.create {
+    margin-top: 20px !important;
+}
+
+#create {
+    text-decoration: none;
+    color: black;
+    font-family: "Scope One", sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+
+}
+
+h1 {
+    font-family: "Open Sans", sans-serif;
+    color: #345A61;
+    margin-top: 30px;
+}
+
+
+@media screen and (max-width: 700px) {
+#remy {
+    display: none;
+}
+form {
+    margin-top: 0px !important;
+}
+
+.line {
+    padding: 1rem 1rem 4rem 1rem;
+}
+.content {
+    margin-top: 150px !important;
+}
+
+}

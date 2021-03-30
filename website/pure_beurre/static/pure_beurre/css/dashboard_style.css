@@ -1,0 +1,47 @@
+.welcome {
+    margin-top: 200px !important;
+}
+
+.text_email {
+    margin-top: 50px;
+}
+
+#email {
+    margin: 8%;
+    background: #DE9440;
+    box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
+    color: #fff;
+}
+
+#hello {
+    font-size: 5em;
+}
+
+.head {
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/banner.jpg");
+    height: 500px;
+}
+
+h1 {
+    font-family: "Open Sans", sans-serif;
+}
+#remy {
+    width: 533px;
+    height: 300px;
+}
+
+@media screen and (max-width: 750px) {
+.head {
+    height: 350px;
+}
+#hello {
+    font-size: 3em;
+}
+.welcome {
+    margin-top: 200px !important;
+}
+#remy {
+    width: 333px;
+    height: 200px;
+}
+}

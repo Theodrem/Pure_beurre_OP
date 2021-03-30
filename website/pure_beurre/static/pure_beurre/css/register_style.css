@@ -1,0 +1,62 @@
+#page {
+    background-color:  #DE9440;
+}
+
+.form-control {
+    margin-top: 20px;
+}
+
+p {
+    font-family: "Scope One", sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.line {
+    margin-top: 70px !important;
+    margin: 8%;
+    background: #fff;
+    padding: 4rem 1rem 4rem 1rem;
+    box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
+}
+
+.content {
+    margin-top: 110px;
+}
+
+h1 {
+    font-family: "Open Sans", sans-serif;
+    color: #345A61;
+}
+
+.connexion {
+    margin-top: 20px !important;
+    font-family: "Scope One", sans-serif;
+
+}
+
+#connexion {
+    text-decoration: none;
+    color: black;
+    font-family: "Scope One", sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+
+}
+
+@media screen and (max-width: 700px) {
+#colette {
+    display: none;
+}
+form {
+    margin-top: 0px !important;
+}
+
+.line {
+    padding: 1rem 1rem 4rem 1rem;
+}
+.content {
+    margin-top: 150px !important;
+}
+
+}
