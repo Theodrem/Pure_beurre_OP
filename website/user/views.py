@@ -1,3 +1,4 @@
+import logging
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
@@ -43,7 +44,7 @@ class Register(View):
                 if user is not None:
                     login(request, user)
 
-                print("Utilisateur %s créé" % username)
+                logging.info("Utilisateur %s créé" % username)
 
                 return HttpResponseRedirect('/dashboard/%s' % username)
         else:
@@ -68,7 +69,7 @@ class Login(View):
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)
-                    print("Utilisateur %s connecté" % username)
+                    logging.info("Utilisateur %s connecté" % username)
                     return HttpResponseRedirect('/dashboard/%s' % username)
 
                 else:

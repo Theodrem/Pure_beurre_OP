@@ -31,6 +31,12 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item" id="form">
+                        <form class="form-inline ml-auto my-2 my-lg-0" action="{% url 'results_view' %}" method="get">
+                        <input type="text" name="food" class="form-control" placeholder="Rechercher" aria-label="rechercher" maxlength="500" required="" id="id_food" autocomplete="off">
+                         </form>
+                        </li>
+
                         {% if request.user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'dashboard_view' user.username %}"><i class="fas fa-user fa-2x"></i></a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout_view' %}"><i class="fas fa-sign-out-alt fa-2x"></i></a></li>
@@ -48,7 +54,7 @@
         <div class="container foot">
             <div class="row">
                 <div class="col-md-6 text-center">
-                     <a href="#" class="text-foot">Mentions légales</a>
+                     <a href="{% url 'legal_view' %}" class="text-foot">Mentions légales</a>
                 </div>
                 <div class="col-md-6 text-center">
                     <a href="{% url 'index_view' %}#contact" class="text-foot">Contact</a>

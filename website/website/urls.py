@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^', include('user.urls')),
     url(r'^', include('pure_beurre.urls')),
     url(r'^admin/', admin.site.urls),
+
 ]

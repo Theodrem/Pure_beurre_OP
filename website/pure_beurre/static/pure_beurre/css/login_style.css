@@ -3,7 +3,7 @@
 }
 
 .form-control {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 p {
@@ -51,7 +51,8 @@ h1 {
 
 @media screen and (max-width: 700px) {
 #remy {
-    display: none;
+    height: 337px;
+    width: 200px;
 }
 form {
     margin-top: 0px !important;

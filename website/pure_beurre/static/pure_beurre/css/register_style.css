@@ -3,7 +3,7 @@
 }
 
 .form-control {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 p {
@@ -46,7 +46,8 @@ h1 {
 
 @media screen and (max-width: 700px) {
 #colette {
-    display: none;
+    height: 337px;
+    width: 150px;
 }
 form {
     margin-top: 0px !important;

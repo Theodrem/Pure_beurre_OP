@@ -34,3 +34,18 @@ footer {
 .text-foot:hover {
     color: #fff;
 }
+
+.form-control {
+    margin-top: 10px;
+}
+.navitem {
+    margin-top: 5px;
+}
+
+
+@media screen and (max-width: 800px) {
+#form {
+    display: none;
+}
+
+}
