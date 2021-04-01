@@ -1,6 +1,6 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User
 from ..models import Category, Product, Substitute
 
 
@@ -33,10 +33,11 @@ class TestViews(TestCase):
 
     def test_research_results(self):
         products = Product.objects.get(name="prod_name")
-        categories = Category.objects.get(name="test_name")
-        food = categories.name
+        categories = products.category
+        food = products.name
         response = self.client.get(reverse('results_view'), {'p': products,
-                                                             'food': food})
+                                                             'food': food,
+                                                             "c": categories})
         self.assertContains(response, "http://image.com")
         self.assertEquals(response.status_code, 200)
 
@@ -54,9 +55,6 @@ class TestViews(TestCase):
 
 
 class TestViewAnonymousUser(TestCase):
-    def setUp(self):
-        self.user = AnonymousUser
-
     def test_save_substitute_anon_user_POST(self):
         response = self.client.post('/results/')
         self.assertEquals(response.status_code, 302)
@@ -85,7 +83,7 @@ class TestViewLogUser(TestCase):
         self.user = User.objects.get(username='user_test')
         self.p = Product.objects.get(name="prod_name")
 
-    def test_save_substitute_user_login_POST(self):
+    def test_save_substitute_POST(self):
         self.client.login(username='user_test', password='passtest')
         response = self.client.post('/results/', {"food_id": self.p.id})
         sub = Product.objects.all().filter(substitute__user=self.user)
@@ -102,7 +100,6 @@ class TestViewLogUser(TestCase):
         self.assertEquals(response.status_code, 200)
 
     def test_save_substitute_already_ex_POST(self):
-
         Substitute.objects.create(user=self.user,
                                   product=self.p)
 
