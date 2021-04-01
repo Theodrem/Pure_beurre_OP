@@ -26,19 +26,19 @@ class Results(View):
     template_name = "pure_beurre/results.html"
 
     def get(self, request):
-        categories = ""
+        category = ""
         product = ""
         food = request.GET.get("food")
         try:
             cat = Category.objects.all().filter(name__icontains=food).order_by("name")
-            categories = cat[0]
-            list_product = Product.objects.all().filter(category=categories).order_by("nutriscore")
+            category = cat[0]
+            list_product = Product.objects.all().filter(category=category).order_by("nutriscore")
         except (Category.DoesNotExist, IndexError):
             try:
                 products = Product.objects.all().filter(name__icontains=food).order_by("name")
                 product = products[0]
-                categories = product.category
-                list_product = Product.objects.all().filter(category=categories,
+                cat = product.category
+                list_product = Product.objects.all().filter(category=cat,
                                                             nutriscore__lte=product.nutriscore).order_by("nutriscore")
             except (Product.DoesNotExist, IndexError):
                 list_product = Product.objects.all().order_by("nutriscore")
@@ -47,7 +47,7 @@ class Results(View):
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
-        return render(request, self.template_name, {'products': products, 'c': categories, 'p': product, 'food': food})
+        return render(request, self.template_name, {'products': products, 'category': category, 'product': product, 'food': food})
 
     @method_decorator(login_required)
     def post(self, request):

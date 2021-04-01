@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^rw!b&z9g+(ocxz9=2fzy8&##37yn8=q^kk$#fjd&j-(1c$5^k'
+SECRET_KEY = os.environ.get('secret_key_p8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,8 +76,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'P8_db',
-        'USER': 'theodrem',
-        'PASSWORD': 'Wizflair1',
+        'USER': os.environ.get('username_db_P8'),
+        'PASSWORD': os.environ.get('password_db_p8'),
         'HOST': 'localhost',
     }
 }
