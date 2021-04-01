@@ -13,7 +13,8 @@ class TestModel(TestCase):
                                            url_opff="https/opff/test.com",
                                            ingredients="ingredients",
                                            image="https/image/test.com",
-                                           opff_id=1234)
+                                           opff_id=1234,
+                                           category=self.cat)
 
         self.user = User.objects.create_user(username="username",
                                              email="email@outlook.fr",

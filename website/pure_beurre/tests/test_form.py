@@ -7,13 +7,13 @@ class TestForms(TestCase):
     def setUp(self):
         self.cat = Category.objects.create(name="test_cat")
         self.prod = Product.objects.create(name="prod_name",
-                                   nutriscore="a",
-                                   brand="brand",
-                                   url_opff="http://url.com",
-                                   ingredients="ingredient_test",
-                                   image="http://image.com",
-                                   opff_id=123,
-                                   category_id=self.cat.id)
+                                           nutriscore="a",
+                                           brand="brand",
+                                           url_opff="http://url.com",
+                                           ingredients="ingredient_test",
+                                           image="http://image.com",
+                                           opff_id=123,
+                                           category_id=self.cat.id)
 
     def test_form_by_category_is_valid(self):
         form = AskFoodform(data={
@@ -38,4 +38,3 @@ class TestForms(TestCase):
             "food": "food_3"
         })
         self.assertTrue(form.is_valid())
-
