@@ -1,4 +1,5 @@
 import requests
+import os
 from django.core.management.base import BaseCommand
 
 from ...models import Category, Product
@@ -13,7 +14,7 @@ class Command(BaseCommand):
         parser.add_argument('num_product', type=int)
 
     def handle(self, *args, **options):
-        post_data = {"name": "Theotim", "username": "theodrem", "password": "Intelligence97"}
+        post_data = {"name": "Theotim", "username": "theodrem", "password": os.environ.get("password_openff")}
         responses = requests.get("https://fr.openfoodfacts.org/categories.json", data=post_data)
         current = responses.json()
         num_category = options['num_category']

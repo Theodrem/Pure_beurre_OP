@@ -9,6 +9,7 @@ DATA_CATEGORY = {'tags':
                           {'name': 'Snacks', 'products': 53871, 'known': 1, 'id': 'en:snacks',
                            'url': 'https://fr.openfoodfacts.org/categorie/snacks'}
                       }}
+
 DATA_PRODUCT = {"products":
                     {0:
                          {"product_name": "Milk chocolate",
