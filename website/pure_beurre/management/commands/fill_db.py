@@ -8,14 +8,22 @@ from ...config import LIST_CATEGORIES
 class Command(BaseCommand):
     help = "Update bdd"
 
-    def handle(self, *args, **kwargs):
+    def add_arguments(self, parser):
+        parser.add_argument('num_category', type=int)
+        parser.add_argument('num_product', type=int)
+
+    def handle(self, *args, **options):
         post_data = {"name": "Theotim", "username": "theodrem", "password": "Intelligence97"}
         responses = requests.get("https://fr.openfoodfacts.org/categories.json", data=post_data)
         current = responses.json()
+        num_category = options['num_category']
+        num_product = options['num_product']
         """
         Get the first fifteen categories and add them to our database
         """
-        for category in range(200):
+
+        for category in range(num_category):
+
             name_category = current["tags"][category]["name"]
             if name_category in LIST_CATEGORIES:
                 try:
@@ -24,7 +32,7 @@ class Command(BaseCommand):
                     c = Category(name=name_category)
                     c.save()
 
-            for page in range(40):
+            for page in range(num_product):
                 url_category = "%s/%s.json" % (current["tags"][category]["url"], page + 1)
                 products = requests.get(url_category)
                 result = products.json()

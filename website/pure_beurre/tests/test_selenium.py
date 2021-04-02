@@ -4,7 +4,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-from website.pure_beurre.models import Product, Category
+from ..models import Product, Category
 from django.contrib.auth.models import User
 
 
