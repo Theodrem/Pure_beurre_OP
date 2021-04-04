@@ -13,7 +13,13 @@ from .form import RegisterForm, LoginForm
 
 @method_decorator(login_required, name='dispatch')
 class Dashboard(View):
+    """
+    Page Dashboard
+    """
     def get(self, request, username):
+        """
+        The logged in user can access their account
+        """
         user = User.objects.get(username=username)
         email = user.email
         return render(request, "user/dashboard.html", {'username': username,
@@ -21,14 +27,25 @@ class Dashboard(View):
 
 
 class Register(View):
+    """
+    Register page
+    """
     form = RegisterForm
     template_name = 'user/register.html'
 
     def get(self, request):
+        """
+        Displays the register form
+        """
         form = self.form()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
+        """
+        If the form is correct and the user does not exist. The user is created and then logged in automatically.
+        The user is redirect on dashboard page.
+        Otherwise an error message is displayed.
+        """
         if request.method == 'POST':
             form = self.form(request.POST)
             if form.is_valid():
@@ -53,14 +70,25 @@ class Register(View):
 
 
 class Login(View):
+    """
+    Login page
+    """
     form = LoginForm
     template_name = "user/login.html"
 
     def get(self, request):
+        """
+        Displays the login form
+        """
         form = self.form()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
+        """
+        If the form is correct and the user does not exist. The user is logged.
+        The user is redirect on dashboard page.
+        Otherwise an error message is displayed.
+        """
         if request.method == 'POST':
             form = self.form(request.POST)
             if form.is_valid():
@@ -83,6 +111,10 @@ class Login(View):
 
 @method_decorator(login_required, name='dispatch')
 class Logout(View):
+    """
+    If the user is logged in, he can log out.
+    The user is redirect on login page.
+    """
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/login')

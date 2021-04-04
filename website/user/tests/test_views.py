@@ -11,6 +11,11 @@ class TestLogViews(TestCase):
         self.user = User.objects.get(username="user_test")
 
     def test_dashboard_view_GET(self):
+        """
+        Check the dashboard page.
+        Check if the current user can get dashboard page.
+        Check if the template is correct, if it contains the expected data and the status code
+        """
         self.client.login(username='user_test', password='password')
         response = self.client.get(reverse("dashboard_view", args=[self.user.username]),
                                    {'username': self.user.username,
@@ -20,6 +25,9 @@ class TestLogViews(TestCase):
         self.assertTemplateUsed(response, "user/dashboard.html")
 
     def test_logout_GET(self):
+        """
+        Check the current user can logout.
+        """
         self.client.login(username='user_test', password='password')
         response = self.client.get(reverse("logout_view"))
         self.assertEquals(response.status_code, 302)
@@ -32,17 +40,28 @@ class TestAnonymousViews(TestCase):
                                  email="email@outlook.fr")
 
     def test_dashboard_view_GET(self):
+        """
+        Check the current user can get the dashboard page.
+        """
         response = self.client.get(reverse("dashboard_view", args=["username"]),
                                    {'username': "username",
                                     'email': " email"})
         self.assertEquals(response.status_code, 302)
 
     def test_login_view_GET(self):
+        """
+        Check login page.
+        Check if the template is correct, if it contains the expected data and the status code
+        """
         response = self.client.get(reverse("login_view"))
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "utilisateur")
 
     def test_login_view_POST(self):
+        """
+        Check if the form is correct.
+        form  if the form is cor
+        """
         form = {"username": "user_test",
                 "password": "password"}
         response = self.client.post(reverse("login_view"), form)

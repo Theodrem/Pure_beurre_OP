@@ -11,6 +11,10 @@ class RegisterForm(forms.Form):
     repassword = forms.CharField(label=" Confirmation mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean(self):
+        """
+        If password and repassword doesn't match.
+        Displays the error message
+        """
         cleaned_data = super(RegisterForm, self).clean()
         val_pwd = cleaned_data['password']
         repassword = cleaned_data['repassword']
@@ -18,6 +22,10 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError("Les mots de passes ne correspondent pas")
 
     def clean_email(self):
+        """
+        If email already exists.
+        Displays the error message.
+        """
         username = self.cleaned_data.get("username")
         email = self.cleaned_data.get("email")
         if email and User.objects.filter(email=email).exists():
@@ -27,6 +35,10 @@ class RegisterForm(forms.Form):
         # Add this to check if the username already exists in your database or not
 
     def clean_username(self):
+        """
+        If username already exists.
+        Displays the error message.
+        """
         username = self.cleaned_data.get("username")
         email = self.cleaned_data.get("email")
         if username and User.objects.filter(username=username).exists():
@@ -39,6 +51,10 @@ class LoginForm(forms.Form):
     password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean_username(self):
+        """
+        If username doesn't exists.
+        Displays the error message.
+        """
         username = self.cleaned_data["username"]
         if not User.objects.filter(username=username).exists():
             raise forms.ValidationError("Le nom d'utilisateur %s n'existe pas" % username)

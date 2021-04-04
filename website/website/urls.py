@@ -4,7 +4,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     url(r'^', include('user.urls')),
-    url(r'^', include('pure_beurre.urls')),
+    url(r'^', include('product.urls')),
     url(r'^admin/', admin.site.urls),
 
 ]

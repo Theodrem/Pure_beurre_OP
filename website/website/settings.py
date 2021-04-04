@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'pure_beurre.apps.PureBeurreConfig',
+    'product.apps.ProductConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'P8_db',
+        'NAME': 'pure_beurre',
         'USER': os.environ.get('username_db_P8'),
         'PASSWORD': os.environ.get('password_db_p8'),
         'HOST': 'localhost',

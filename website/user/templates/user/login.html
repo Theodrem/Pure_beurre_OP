@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends "pure_beurre/base.html" %}
+{% extends "product/base.html" %}
 
 {% block content %}
 {% load static %}
@@ -10,7 +10,7 @@
 
         <title>Accueil</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'pure_beurre/assets/img/logo_pur_beurre-favicon.png' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'product/assets/img/logo_pur_beurre-favicon.png' %}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -19,7 +19,7 @@
         <!-- Third party plugin CSS-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'pure_beurre/css/login_style.css' %}" rel="stylesheet">
+        <link href="{% static 'product/css/login_style.css' %}" rel="stylesheet">
 
 <body id="page">
     <div class="container content text-center">
@@ -30,7 +30,7 @@
         </div>
         <div class="row line">
             <div class="col-md-6 text-left">
-                <p><img src="{% static 'pure_beurre\assets\img\remy.jpg' %}" alt="" id="remy"></p>
+                <p><img src="{% static 'product\assets\img\remy.jpg' %}" alt="" id="remy"></p>
             </div>
             <div class="col-md-6">
                <form action="{% url 'login_view' %}" method="post">
