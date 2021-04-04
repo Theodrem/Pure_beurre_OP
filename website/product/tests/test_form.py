@@ -16,24 +16,36 @@ class TestForms(TestCase):
                                            category_id=self.cat.id)
 
     def test_form_by_category_is_valid(self):
+        """
+        Check if value is equal one category. The form is valid
+        """
         form = AskFoodform(data={
             "food": "test_cat"
         })
         self.assertTrue(form.is_valid())
 
     def test_form_by_product_is_valid(self):
+        """
+        Check if value is equal one product. The form is valid
+        """
         form = AskFoodform(data={
             "food": "prod_name"
         })
         self.assertTrue(form.is_valid())
 
     def test_form_empty(self):
+        """
+        Check if the value is empty. The form is  not valid
+        """
         form = AskFoodform(data={
             "food": ""
         })
         self.assertFalse(form.is_valid())
 
     def test_product_not_exist(self):
+        """
+        Check if the value is not exist. The form is  not valid
+        """
         form = AskFoodform(data={
             "food": "food_3"
         })

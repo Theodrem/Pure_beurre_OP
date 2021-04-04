@@ -69,6 +69,9 @@ class TestAnonymousViews(TestCase):
         self.assertIn('_auth_user_id', self.client.session)
 
     def test_login_view_password_false(self):
+        """
+        Check if user to input false password. Do not connect user.
+        """
         user = User.objects.get(username="user_test")
         form = {"username": "user_test",
                 "password": "pass"}
@@ -77,11 +80,18 @@ class TestAnonymousViews(TestCase):
         self.assertNotIn('_auth_user_id', self.client.session)
 
     def test_register_view_GET(self):
+        """
+        Check Register page.
+        Check if the template is correct, if it contains the expected data and the status code
+        """
         response = self.client.get(reverse("register_view"))
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "Prenom")
 
     def test_register_view_POST(self):
+        """
+        Check if form is valid, create user then log in user.
+        """
         form = {"username": "user_test",
                 "first_name": "",
                 "last_name": "",
