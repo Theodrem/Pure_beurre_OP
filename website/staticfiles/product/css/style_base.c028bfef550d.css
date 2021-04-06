@@ -1,0 +1,51 @@
+#logo {
+    height: 50px;
+    width: 50px;
+}
+#mainNav {
+    background-color: #fff;
+}
+
+#nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+#title_nav {
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+}
+
+.text-foot {
+    font-family: "Scope One", sans-serif;
+    font-size: 1.3em;
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background: #345A61 !important;
+}
+
+.foot {
+    margin-top: 15px;
+}
+
+.text-foot:hover {
+    color: #fff;
+}
+
+.form-control {
+    margin-top: 10px;
+}
+.navitem {
+    margin-top: 5px;
+}
+
+
+@media screen and (max-width: 1000px) {
+#form {
+    display: none;
+}
+
+}

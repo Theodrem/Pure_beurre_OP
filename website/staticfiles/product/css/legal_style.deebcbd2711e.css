@@ -1,0 +1,32 @@
+#list {
+    margin: 12%;
+    background: #DE9440;
+    box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
+    color: #fff;
+}
+
+.tete {
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/banner.d591214deb4d.jpg");
+    height: 500px;
+}
+
+h1 {
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+}
+
+.title {
+     margin-top: 250px !important;
+}
+
+@media screen and (max-width: 800px) {
+.tete {
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/banner.d591214deb4d.jpg");
+    height: 400px;
+}
+
+.title {
+     margin-top: 200px !important;
+}
+
+}
