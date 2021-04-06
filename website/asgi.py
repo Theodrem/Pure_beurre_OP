@@ -1,5 +1,5 @@
 """
-ASGI config for website project.
+ASGI config for ss project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
