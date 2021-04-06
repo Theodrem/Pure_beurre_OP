@@ -67,7 +67,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
         time.sleep(5)
 
 
-        
+
 
 
 
