@@ -33,7 +33,7 @@
                <form action="{% url 'register_view' %}" method="post">
                    {% csrf_token %}
                    {{ form.as_p }}
-                   <button type="submit" class="btn btn-success">Valider</button>
+                   <button type="submit" class="btn btn-success" id="submit">Valider</button>
                 </form>
                 <h6 class="connexion">Deja un compte?<a href="{% url 'login_view' %}" id="connexion">    Connexion</a></h6>
             </div>

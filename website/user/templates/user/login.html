@@ -36,7 +36,7 @@
                <form action="{% url 'login_view' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-success">Valider</button>
+                    <button type="submit" class="btn btn-success" id="submit">Valider</button>
                 </form>
                 {% if messages %}
                     <ul class="messages">
