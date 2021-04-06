@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('secret_key_p8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = True
 
@@ -91,6 +91,16 @@ if os.environ.get('ENV') == 'PRODUCTION':
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'pure_beurre',
+            'USER': os.environ.get('username_db_P8'),
+            'PASSWORD': os.environ.get('password_db_p8'),
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
