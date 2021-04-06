@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="website\pure_beurre\static\product\assets\img\screen_idnx.PNG" width="350" height="200" title="hover text">
+  <img src="website\product\static\product\assets\img\screen_idnx.PNG" width="350" height="200" title="hover text">
 </p>
 
 # Website
