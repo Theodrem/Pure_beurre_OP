@@ -156,5 +156,5 @@ if os.environ.get('ENV') == 'PRODUCTION':
     DATABASES['default'].update(db_from_env)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+django_heroku.settings(locals())
 
