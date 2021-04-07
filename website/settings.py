@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('secret_key_p8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
