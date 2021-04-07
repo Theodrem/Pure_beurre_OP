@@ -26,10 +26,10 @@ SECRET_KEY = os.environ.get('secret_key_p8')
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
+    ALLOWED_HOSTS = ['https://pure-beurre-th.herokuapp.com/']
 else:
     DEBUG = True
-
-ALLOWED_HOSTS = ['https://pure-beurre-th.herokuapp.com/', '127.0.0.1']
+    ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
