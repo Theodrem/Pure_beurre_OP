@@ -52,7 +52,7 @@ class TestMangement(TestCase):
 
     def test_insert_category(self):
         """
-        Test if the category and product are created.
+        Test if the category and user are created.
         """
         with patch('product.management.commands.fill_db.requests.get') as mock_requests:
             command = Command()

@@ -26,7 +26,7 @@ class TestForms(TestCase):
 
     def test_form_by_product_is_valid(self):
         """
-        Check if value is equal one product. The form is valid
+        Check if value is equal one user. The form is valid
         """
         form = AskFoodform(data={
             "food": "prod_name"
