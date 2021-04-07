@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 import django_heroku
 import dj_database_url
-from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -91,19 +91,17 @@ if os.environ.get('ENV') == 'PRODUCTION':
             'PORT': '5432'
         }
     }
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pure_beurre',
-            'USER': os.environ.get('username_db_P8'),
-            'PASSWORD': os.environ.get('password_db_p8'),
-            'HOST': 'localhost',
-            'PORT': '5432'
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'pure_beurre',
+                'USER': os.environ.get('username_db_P8'),
+                'PASSWORD': os.environ.get('password_db_p8'),
+                'HOST': 'localhost',
+                'PORT': '5432'
+            }
         }
-    }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -125,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'fr-FR'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Europe/Paris'
 
@@ -140,6 +138,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+INTERNAL_IPS = ['127.0.0.1']
 
 if os.environ.get('ENV') == 'PRODUCTION':
 
@@ -153,7 +152,9 @@ if os.environ.get('ENV') == 'PRODUCTION':
     STATICFILES_DIRS = (
         os.path.join(PROJECT_ROOT, 'static'),
     )
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-django_heroku.settings(locals())
+
 
