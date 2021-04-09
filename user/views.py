@@ -11,11 +11,11 @@ from django.utils.decorators import method_decorator
 from .form import RegisterForm, LoginForm
 
 
-@method_decorator(login_required, name='dispatch')
 class Dashboard(View):
     """
     Page Dashboard
     """
+    @method_decorator(login_required, name='dispatch')
     def get(self, request):
         current_user = request.user
         """
