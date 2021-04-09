@@ -49,22 +49,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
         time.sleep(3)
 
-    def test_login_user(self):
-        self.browser.get(self.live_server_url + "/login/")
-
-        username = self.browser.find_element_by_xpath('//*[@id="id_username"]')
-        passwd = self.browser.find_element_by_xpath('//*[@id="id_password"]')
-        button_form = self.browser.find_element_by_id('submit')
-
-        username.send_keys("username_test")
-        passwd.send_keys("pass_test")
-
-        button_form.click()
-
-        url = self.live_server_url + reverse("dashboard_view", args=["username_test"])
-        self.assertEquals(self.browser.current_url, url)
-
-        time.sleep(5)
 
         #add register
 

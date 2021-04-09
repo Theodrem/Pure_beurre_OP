@@ -27,7 +27,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['https://pure-beurre-th.herokuapp.com/']
+ALLOWED_HOSTS = ['https://pure-beurre-th.herokuapp.com/', '127.0.0.1']
 
 # Application definition
 
@@ -79,8 +79,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    DATABASES = {
+DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'pure_beurre',
@@ -90,17 +89,6 @@ if os.environ.get('ENV') == 'PRODUCTION':
             'PORT': '5432'
         }
     }
-else:
-    DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'pure_beurre',
-                'USER': os.environ.get('username_db_P8'),
-                'PASSWORD': os.environ.get('password_db_p8'),
-                'HOST': 'localhost',
-                'PORT': '5432'
-            }
-        }
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -137,7 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-INTERNAL_IPS = ['127.0.0.1']
 
 if os.environ.get('ENV') == 'PRODUCTION':
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
