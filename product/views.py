@@ -106,7 +106,7 @@ class MyProducts(View):
     """
     Page My product
     """
-    template_name = "product\my_products.html"
+    template_name = "product/my_products.html"
 
     @method_decorator(login_required, name='dispatch')
     def get(self, request):
