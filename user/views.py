@@ -63,7 +63,7 @@ class Register(View):
 
                 logging.info("Utilisateur %s créé" % username)
 
-                return HttpResponseRedirect('/dashboard/%s' % username)
+                return HttpResponseRedirect('/dashboard/')
         else:
             form = RegisterForm()
         return render(request, self.template_name, {'form': form})
@@ -98,7 +98,7 @@ class Login(View):
                 if user is not None:
                     login(request, user)
                     logging.info("Utilisateur %s connecté" % username)
-                    return HttpResponseRedirect('/dashboard/%s' % username)
+                    return HttpResponseRedirect('/dashboard/')
 
                 else:
                     messages.add_message(request, messages.INFO, 'Le Mot de passe ne correspond pas.')
