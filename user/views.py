@@ -16,14 +16,14 @@ class Dashboard(View):
     """
     Page Dashboard
     """
-    def get(self, request, username):
+    def get(self, request):
+        current_user = request.user
         """
         The logged in user can access their account
         """
-        user = User.objects.get(username=username)
-        email = user.email
-        return render(request, "user/dashboard.html", {'username': username,
-                                                       'email': email})
+        user = User.objects.get(username=current_user.username)
+        return render(request, "user/dashboard.html", {'username': user.username,
+                                                       'email': user.email})
 
 
 class Register(View):

@@ -9,6 +9,7 @@ from .form import AskFoodform
 from .models import Category, Product, Substitute
 import os
 
+
 class Index(View):
     """
     Index page
