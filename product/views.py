@@ -27,7 +27,7 @@ class Index(View):
             return HttpResponseRedirect('/results/')
         else:
             form = self.form
-        return render(request, self.template_name, {'index_form': form})
+        return render(request, self.template_name, {'index_form': form, 'title': "Accueil"})
 
 
 class Results(View):
@@ -65,7 +65,7 @@ class Results(View):
         products = paginator.get_page(page)
 
         return render(request, self.template_name,
-                      {'products': products, 'category': category, 'product': product, 'food': food})
+                      {'products': products, 'category': category, 'product': product, 'food': food, 'title': "Resultat"})
 
     @method_decorator(login_required)
     def post(self, request):
@@ -99,7 +99,9 @@ class DetailProduct(View):
         except Product.DoesNotExist:
             raise Http404
 
-        return render(request, self.template_name, {"prod": prod})
+        title = "Produit %s" % prod.name
+
+        return render(request, self.template_name, {"prod": prod, 'title': title})
 
 
 class MyProducts(View):
@@ -118,7 +120,7 @@ class MyProducts(View):
         paginator = Paginator(list_product, 18)
         page = request.GET.get('page')
         products = paginator.get_page(page)
-        return render(request, self.template_name, {'products': products})
+        return render(request, self.template_name, {'products': products, 'title': "Mes substituts"})
 
 
 class LegalNotice(View):
@@ -128,4 +130,4 @@ class LegalNotice(View):
     template_name = "product/legal_notice.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'title': "Mentions légales"})

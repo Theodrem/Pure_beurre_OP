@@ -23,7 +23,8 @@ class Dashboard(View):
         """
         user = User.objects.get(username=current_user.username)
         return render(request, "user/dashboard.html", {'username': user.username,
-                                                       'email': user.email})
+                                                       'email': user.email,
+                                                       'title': "Mon compte"})
 
 
 class Register(View):
@@ -38,7 +39,7 @@ class Register(View):
         Displays the register form
         """
         form = self.form()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'title': "Inscription"})
 
     def post(self, request):
         """
@@ -81,7 +82,7 @@ class Login(View):
         Displays the login form
         """
         form = self.form()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'title': "Connexion"})
 
     def post(self, request):
         """
