@@ -5,10 +5,9 @@
 {% block content %}
 {% load static %}
 <head>
-    <title>{{ cat.name }}</title>
     <link href="{% static 'product/css/results_style.css' %}" rel="stylesheet">
 </head>
-<body id="page">
+<div id="page">
     <div class="tete container-fluid text-center">
         <div class="row">
             <div class="col-md-12 title">
@@ -95,7 +94,5 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
         <!-- Core theme JS-->
+</div>
 {% endblock %}
-</body>
-
-</html>
