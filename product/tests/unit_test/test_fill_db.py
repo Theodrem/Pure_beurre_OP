@@ -1,7 +1,7 @@
 from django.test import TestCase
 from unittest.mock import patch
-from ..management.commands.fill_db import Command
-from ..models import Category, Product
+from product.management.commands.fill_db import Command
+from product.models import Category, Product
 
 DATA_CATEGORY = {'tags':
                      {0:

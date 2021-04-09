@@ -2,7 +2,7 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from django.urls import reverse
-from ..models import Product, Category
+from product.models import Product, Category
 from django.contrib.auth.models import User
 
 

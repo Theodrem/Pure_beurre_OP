@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user.apps.UserConfig',
+    'user.apps.UserConfig'
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,10 +138,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 INTERNAL_IPS = ['127.0.0.1']
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 if os.environ.get('ENV') == 'PRODUCTION':
-
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
     # Static files settings
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -148,9 +148,9 @@ if os.environ.get('ENV') == 'PRODUCTION':
 
     STATICFILES_DIRS = (
         os.path.join(PROJECT_ROOT, 'static'),
+        os.path.join(PROJECT_ROOT, 'product/static'),
     )
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 django_heroku.settings(locals())

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from .form import AskFoodform
 from .models import Category, Product, Substitute
-
+import os
 
 class Index(View):
     """
@@ -63,7 +63,8 @@ class Results(View):
         page = request.GET.get('page')
         products = paginator.get_page(page)
 
-        return render(request, self.template_name, {'products': products, 'category': category, 'product': product, 'food': food})
+        return render(request, self.template_name,
+                      {'products': products, 'category': category, 'product': product, 'food': food})
 
     @method_decorator(login_required)
     def post(self, request):
@@ -71,7 +72,7 @@ class Results(View):
         If the user is logged in, he can save a substitute.
         """
         food_id = request.POST['food_id']
-        current_user = request.user #get current user
+        current_user = request.user  # get current user
         p = Product(id=food_id)
         try:
             Product.objects.get(substitute__user=current_user, substitute__product=p)

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
-from ..models import Category, Product, Substitute
+from product.models import Category, Product, Substitute
 
 
 class TestViews(TestCase):
@@ -17,6 +17,7 @@ class TestViews(TestCase):
                                    image="http://image.com",
                                    opff_id=123,
                                    category_id=cat.id)
+
         p_two = Product.objects.create(name="poire",
                                    nutriscore="b",
                                    brand="brand",
@@ -42,7 +43,7 @@ class TestViews(TestCase):
                                   product=p)
 
         self.user = User.objects.get(username='user_test')
-        self.p = Product.objects.get(name="prod_name")
+        self.p = Product.objects.get(name="pomme")
 
     def test_index_page_GET(self):
         """
@@ -59,7 +60,7 @@ class TestViews(TestCase):
         Check the results page.
         Check if the template is correct, if it contains the expected data and the status code
         """
-        products = Product.objects.get(name="prod_name")
+        products = Product.objects.get(name="poire")
         categories = products.category
         food = products.name
         response = self.client.get(reverse('results_view'), {'p': products,
@@ -108,7 +109,7 @@ class TestViewAnonymousUser(TestCase):
 class TestViewLogUser(TestCase):
     def setUp(self):
         cat = Category.objects.create(name="test_name")
-        Product.objects.create(name="prod_name",
+        Product.objects.create(name="poire",
                                nutriscore="a",
                                brand="brand",
                                url_opff="http://url.com",
@@ -122,7 +123,7 @@ class TestViewLogUser(TestCase):
                                  password="passtest")
 
         self.user = User.objects.get(username='user_test')
-        self.p = Product.objects.get(name="prod_name")
+        self.p = Product.objects.get(name="poire")
 
     def test_save_substitute_POST(self):
         """

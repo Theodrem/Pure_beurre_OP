@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from ..form import LoginForm, RegisterForm
+from user.form import LoginForm, RegisterForm
 
 
 class TestForms(TestCase):
