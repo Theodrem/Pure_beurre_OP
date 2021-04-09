@@ -19,5 +19,5 @@ The site offers substitutes. If you have an account, you can save them, then fin
 
 ## Local installation:
 
-Install libraries cmd: "pip install riquirements.txt"
+Install libraries cmd: "pip install requirements.txt"
 

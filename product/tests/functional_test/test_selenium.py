@@ -66,6 +66,15 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
         time.sleep(5)
 
+        #add register
+
+        #add save
+
+        #plan de test
+
+        #generer test
+
+        #nettoyer repo
 
 
 

@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('secret_key_p8')
 if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG = False
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ['https://pure-beurre-th.herokuapp.com/']
 
@@ -147,8 +147,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
-        os.path.join(PROJECT_ROOT, 'product/static'),
+        os.path.join(PROJECT_ROOT, 'static')
     )
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
