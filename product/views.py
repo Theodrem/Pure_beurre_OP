@@ -114,7 +114,7 @@ class MyProducts(View):
         The logged in user can see their products
         """
         current_user = request.user
-        list_product = Product.objects.all().filter(substitute__user=current_user).order_by("nutriscore")
+        list_product = Product.objects.all().order_by("nutriscore")
         paginator = Paginator(list_product, 18)
         page = request.GET.get('page')
         products = paginator.get_page(page)
