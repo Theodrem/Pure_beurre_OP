@@ -26,7 +26,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
         button_form.click()
 
-        url = self.live_server_url + reverse("dashboard_view", args=["username_test"])
+        url = self.live_server_url + reverse("dashboard_view")
         self.assertEquals(self.browser.current_url, url)
 
         time.sleep(5)

@@ -17,7 +17,7 @@ class TestLogViews(TestCase):
         Check if the template is correct, if it contains the expected data and the status code
         """
         self.client.login(username='user_test', password='password')
-        response = self.client.get(reverse("dashboard_view", args=[self.user.username]),
+        response = self.client.get(reverse("dashboard_view"),
                                    {'username': self.user.username,
                                     'email': self.user.email})
         self.assertEquals(response.status_code, 200)
@@ -43,7 +43,7 @@ class TestAnonymousViews(TestCase):
         """
         Check the current user can get the dashboard page.
         """
-        response = self.client.get(reverse("dashboard_view", args=["username"]),
+        response = self.client.get(reverse("dashboard_view"),
                                    {'username': "username",
                                     'email': " email"})
         self.assertEquals(response.status_code, 302)

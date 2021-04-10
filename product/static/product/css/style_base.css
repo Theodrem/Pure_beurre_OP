@@ -33,6 +33,7 @@ footer {
 
 .text-foot:hover {
     color: #fff;
+    font-weight: bold;
 }
 
 .form-control {
