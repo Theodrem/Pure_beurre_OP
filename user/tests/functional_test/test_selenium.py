@@ -29,4 +29,4 @@ class MySeleniumTests(StaticLiveServerTestCase):
         url = self.live_server_url + reverse("dashboard_view")
         self.assertEquals(self.browser.current_url, url)
 
-        time.sleep(5)
+        time.sleep(15)
