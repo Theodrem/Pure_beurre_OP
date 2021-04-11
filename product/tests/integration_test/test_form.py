@@ -15,7 +15,7 @@ class TestForms(TestCase):
                                            opff_id=123,
                                            category_id=self.cat.id)
 
-    def test_form_by_category_is_valid(self):
+    def test_form_category_is_valid(self):
         """
         Check if value is equal one category. The form is valid
         """
@@ -24,7 +24,7 @@ class TestForms(TestCase):
         })
         self.assertTrue(form.is_valid())
 
-    def test_form_by_product_is_valid(self):
+    def test_form_product_is_valid(self):
         """
         Check if value is equal one user. The form is valid
         """

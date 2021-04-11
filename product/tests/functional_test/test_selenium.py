@@ -91,7 +91,6 @@ class MySeleniumTests(StaticLiveServerTestCase):
             self.assertTrue(sub.name in self.browser.page_source)
         self.assertEquals(self.browser.current_url, url)
 
-
         time.sleep(10)
 
 

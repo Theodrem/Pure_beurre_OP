@@ -50,7 +50,7 @@ class TestMangement(TestCase):
         self.url_product = "%s/%s.json" % (
             "https://fr.openfoodfacts.org/categorie/snacks", 1)
 
-    def test_insert_category(self):
+    def test_insert_data(self):
         """
         Test if the category and user are created.
         """

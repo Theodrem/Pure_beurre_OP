@@ -29,8 +29,21 @@ class TestLogViews(TestCase):
         Check the current user can logout.
         """
         self.client.login(username='user_test', password='password')
+        self.assertIn('_auth_user_id', self.client.session)
         response = self.client.get(reverse("logout_view"))
         self.assertEquals(response.status_code, 302)
+        self.assertNotIn('_auth_user_id', self.client.session)
+
+    def test_login_view_POST(self):
+        """
+        Check if the form is correct.
+        form  if the form is cor
+        """
+        form = {"username": "user_test",
+                "password": "password"}
+        response = self.client.post(reverse("login_view"), form)
+        self.assertEquals(response.status_code, 302)
+        self.assertIn('_auth_user_id', self.client.session)
 
 
 class TestAnonymousViews(TestCase):
@@ -47,6 +60,7 @@ class TestAnonymousViews(TestCase):
                                    {'username': "username",
                                     'email': " email"})
         self.assertEquals(response.status_code, 302)
+        self.assertNotIn('_auth_user_id', self.client.session)
 
     def test_login_view_GET(self):
         """
@@ -56,17 +70,6 @@ class TestAnonymousViews(TestCase):
         response = self.client.get(reverse("login_view"))
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "utilisateur")
-
-    def test_login_view_POST(self):
-        """
-        Check if the form is correct.
-        form  if the form is cor
-        """
-        form = {"username": "user_test",
-                "password": "password"}
-        response = self.client.post(reverse("login_view"), form)
-        self.assertEquals(response.status_code, 302)
-        self.assertIn('_auth_user_id', self.client.session)
 
     def test_login_view_password_false(self):
         """
@@ -103,6 +106,7 @@ class TestAnonymousViews(TestCase):
         self.assertEquals(response.status_code, 200)
         user = User.objects.get(username="user_test")
         self.assertIsInstance(user, User)
+        self.assertNotIn('_auth_user_id', self.client.session)
 
 
 
