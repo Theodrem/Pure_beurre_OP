@@ -163,3 +163,4 @@ class TestViewLogUser(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(len(sub), 1)
 
+

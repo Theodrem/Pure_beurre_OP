@@ -53,5 +53,5 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.assertEquals(self.browser.current_url, url)
         self.assertEquals(user.username, "new_username")
         self.assertEquals(len(all_users), 2)
-        
+
         time.sleep(5)
