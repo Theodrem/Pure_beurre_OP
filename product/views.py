@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 from .form import AskFoodform
 from .models import Category, Product, Substitute
-import os
 
 
 class Index(View):
