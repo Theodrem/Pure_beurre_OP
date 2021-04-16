@@ -8,8 +8,7 @@ This website was done for a school project with Openclassrooms.
 The purpose of the site is to suggest food substitutes.
 
 ## Website link
-
-
+https://pure-beurre-th.herokuapp.com/
 
 
 ## Usage
