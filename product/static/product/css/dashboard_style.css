@@ -6,7 +6,7 @@
     margin-top: 50px;
 }
 
-#email {
+.info {
     margin: 8%;
     background: #DE9440;
     box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
@@ -28,6 +28,20 @@ h1 {
 #remy {
     width: 533px;
     height: 300px;
+}
+
+#change {
+    color: white;
+    text-decoration: none;
+}
+
+#change:hover {
+    font-weight: bold;
+    color: #grey;
+}
+
+.text {
+    font-family: "Scope One", sans-serif;
 }
 
 @media screen and (max-width: 750px) {

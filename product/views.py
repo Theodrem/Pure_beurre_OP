@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 
 from .form import AskFoodform
 from .models import Category, Product, Substitute
@@ -134,8 +133,7 @@ class MyProducts(View):
             sub = Product.objects.get(substitute__user=current_user, substitute__product=p)
             sub.delete()
         except Product.DoesNotExist:
-            messages.add_message(request, messages.INFO, "Le produit n'existe pas")
-            print("errroe")
+            return HttpResponseRedirect('/my_products')
 
         return HttpResponseRedirect('/my_products')
 

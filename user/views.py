@@ -22,8 +22,7 @@ class Dashboard(View):
         The logged in user can access their account
         """
         user = User.objects.get(username=current_user.username)
-        return render(request, "user/dashboard.html", {'username': user.username,
-                                                       'email': user.email,
+        return render(request, "user/dashboard.html", {'user': user,
                                                        'title': "Mon compte"})
 
 

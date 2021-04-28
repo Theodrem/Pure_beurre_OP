@@ -47,7 +47,7 @@
                     <form class="save-link" action="{% url 'results_view' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="food_id" value="{{ p.id }}">
-                        <button class="btn btn-outline-dark">
+                        <button class="btn btn-outline-success">
                             <i class="fas fa-save"></i> Sauvegarder
                         </button>
                     </form>
