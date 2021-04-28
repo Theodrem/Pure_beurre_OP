@@ -14,7 +14,7 @@ class Command(BaseCommand):
         parser.add_argument('num_product', type=int)
 
     def handle(self, *args, **options):
-        post_data = {"name": "Theotim", "username": "theodrem", "password": os.environ.get("password_openff")}
+        post_data = {"name": "Theotim", "username": "theodrem", "password": os.environ.get("PASSWORD_OPENFF")}
         responses = requests.get("https://fr.openfoodfacts.org/categories.json", data=post_data)
         current = responses.json()
         num_category = options['num_category']

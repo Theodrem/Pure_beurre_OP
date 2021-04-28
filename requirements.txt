@@ -3,6 +3,7 @@ atomicwrites==1.4.0
 attrs==20.3.0
 certifi==2020.12.5
 chardet==4.0.0
+click==7.1.2
 colorama==0.4.4
 configparser==5.0.2
 coverage==5.5
@@ -28,6 +29,7 @@ rjsmin==1.1.0
 selenium==3.141.0
 six==1.15.0
 sqlparse==0.4.1
+tchappui-webdrivers==0.3.7
 toml==0.10.2
 urllib3==1.26.4
 webdriver-manager==3.3.0

@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('secret_key_p8')
+SECRET_KEY = os.environ.get('SECRET_KEY_P8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
@@ -81,8 +81,8 @@ DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'pure_beurre',
-            'USER': os.environ.get('username_db_P8'),
-            'PASSWORD': os.environ.get('password_db_p8'),
+            'USER': 'theodrem',
+            'PASSWORD': os.environ.get('PASSWORD_DB_P8'),
             'HOST': 'localhost',
             'PORT': '5432'
         }
@@ -123,7 +123,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 if os.environ.get('ENV') == 'PRODUCTION':
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
     # Static files settings
@@ -132,7 +131,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static')
+        os.path.join(PROJECT_ROOT, 'static'),
     )
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)

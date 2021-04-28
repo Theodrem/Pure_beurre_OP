@@ -6,6 +6,7 @@ from product.models import Product, Category, Substitute
 from django.contrib.auth.models import User
 
 
+
 class MySeleniumTests(StaticLiveServerTestCase):
     def setUp(self):
         self.cat = Category.objects.create(name="fruit")
@@ -31,7 +32,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
                                              email="email@outlook.fr",
                                              password="pass_test")
 
-        self.browser = webdriver.Edge(executable_path="C:\exec\msedgedriver.exe")
+        self.browser = webdriver.Chrome(executable_path="C:\exec\chromedriver.exe")
 
     def tearDown(self):
         self.browser.close()
