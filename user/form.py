@@ -1,3 +1,4 @@
+from django.contrib.auth.password_validation import validate_password
 from django import forms
 from django.contrib.auth.models import User
 
@@ -7,10 +8,10 @@ class RegisterForm(forms.Form):
     first_name = forms.CharField(label="Prenom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     last_name = forms.CharField(label="Nom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     email = forms.EmailField(label="Email *", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
-    password = forms.CharField(label="Mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe(minimum 8 caractères) *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
     repassword = forms.CharField(label=" Confirmation mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
-    def clean(self):
+    def check_password_matches(self):
         """
         If password and repassword doesn't match.
         Displays the error message
@@ -21,7 +22,7 @@ class RegisterForm(forms.Form):
         if val_pwd != repassword:
             raise forms.ValidationError("Les mots de passes ne correspondent pas")
 
-    def clean_email(self):
+    def check_email_already_exist(self):
         """
         If email already exists.
         Displays the error message.
@@ -34,7 +35,7 @@ class RegisterForm(forms.Form):
 
         # Add this to check if the username already exists in your database or not
 
-    def clean_username(self):
+    def check_username_already_exist(self):
         """
         If username already exists.
         Displays the error message.
@@ -50,7 +51,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(label="Nom d'utilisateur *", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     password = forms.CharField(label="Mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
-    def clean_username(self):
+    def check_username_exist(self):
         """
         If username doesn't exists.
         Displays the error message.
