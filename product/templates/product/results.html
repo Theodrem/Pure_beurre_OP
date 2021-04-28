@@ -63,24 +63,20 @@
                     {% if products.has_other_pages %}
                       <ul class="pagination">
                         {% if products.has_previous %}
-                          <li class="page-item"><a href="?page={{ products.previous_page_number }}" class="page-link text-warning">&laquo;</a></li>
-                        {% else %}
-                          <li class="page-item"><a href="" class="page-link"><span class="page-text">&laquo;</span></a></li>
+                          <li class="page-item"><a href="?page=1&food={{ food|urlencode }}" class="page-link text-warning">1</a></li>
+                          <li class="page-item"><a href="?page={{ products.previous_page_number }}&food={{ food|urlencode }}" class="page-link text-warning">Précédant</a></li>
                         {% endif %}
                         {% for i in products.paginator.page_range %}
                             {% if products.number == i %}
-                                <li class="page-item"><a href="" class="page-link"><span class="page-text">{{ i }}<span class="page-text sr-only">(current)</span></span></a></li>
-                            {% else %}
-                            <li class="page-item"><a href="?page={{ i }}&food={{ food|urlencode }}" class="page-link text-warning">{{ i }}</a></li>
+                                <li class="page-item"><a href="" class="page-link"><span class="page-text">Page {{ i }}<span class="page-text sr-only">(current)</span></span></a></li>
                             {% endif %}
-                            {% endfor %}
-                            {% if products.has_next %}
-                              <li class="page-item"><a href="?page={{ products.next_page_number }}" class="page-link text-warning">&raquo;</a></li>
-                            {% else %}
-                              <li class="page-item"><a href="" class="page-link"><span class="page-text">&raquo;</span></a></li>
-                            {% endif %}
-                      </ul>
+                         {% endfor %}
+                        {% if products.has_next %}
+                          <li class="page-item"><a href="?page={{ products.next_page_number }}&food={{ food|urlencode }}" class="page-link text-warning">Suivant</a></li>
+                          <li class="page-item"><a href="?page={{ products.paginator.num_pages }}&food={{ food|urlencode }}" class="page-link text-warning">{{ products.paginator.num_pages }}</a></li>
                         {% endif %}
+                      </ul>
+                    {% endif %}
                 </nav>
             </div>
         </div>
