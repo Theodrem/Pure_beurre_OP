@@ -40,7 +40,16 @@
               </div>
             <div class="card-body">
                 <p><a href="{% url 'food_detail' p.id %}"><img src="{{ p.image }}" alt="" id="object_img"></a></p>
-            </div>
+                {% if request.user.is_authenticated %}
+                    <form class="save-link" action="{% url 'my_products' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="food_id" value="{{ p.id }}">
+                        <button class="btn btn-outline-dark">
+                            Supprimer
+                        </button>
+                    </form>
+                {% endif %}
+                </div>
             </div>
         </div>
         {% endfor %}

@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .form import AskFoodform
 from .models import Category, Product, Substitute
@@ -120,6 +121,23 @@ class MyProducts(View):
         page = request.GET.get('page')
         products = paginator.get_page(page)
         return render(request, self.template_name, {'products': products, 'title': "Mes substituts"})
+
+    @method_decorator(login_required, name='dispatch')
+    def post(self, request):
+        """
+        If the user is logged in, he can save a substitute.
+        """
+        food_id = request.POST['food_id']
+        current_user = request.user  # get current user
+        p = Product(id=food_id)
+        try:
+            sub = Product.objects.get(substitute__user=current_user, substitute__product=p)
+            sub.delete()
+        except Product.DoesNotExist:
+            messages.add_message(request, messages.INFO, "Le produit n'existe pas")
+            print("errroe")
+
+        return HttpResponseRedirect('/my_products')
 
 
 class LegalNotice(View):
