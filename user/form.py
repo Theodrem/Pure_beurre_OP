@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    username = forms.CharField(label="Nom d'utilisateur *", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     first_name = forms.CharField(label="Prenom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     last_name = forms.CharField(label="Nom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
-    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
-    repassword = forms.CharField(label=" Confirmation mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    email = forms.EmailField(label="Email *", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    repassword = forms.CharField(label=" Confirmation mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean(self):
         """
@@ -47,8 +47,8 @@ class RegisterForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    username = forms.CharField(label="Nom d'utilisateur *", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean_username(self):
         """
