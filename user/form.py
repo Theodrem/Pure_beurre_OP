@@ -59,3 +59,5 @@ class LoginForm(forms.Form):
         username = self.cleaned_data["username"]
         if not User.objects.filter(username=username).exists():
             raise forms.ValidationError("Le nom d'utilisateur %s n'existe pas" % username)
+
+

@@ -3,7 +3,6 @@
 {% block content %}
 {% load static %}
 <head>
-    <title>Mon compte</title>
     <!-- Favicon-->
     <link href="{% static 'product/css/dashboard_style.css' %}" rel="stylesheet">
 </head>
@@ -23,15 +22,6 @@
          <div class="row info">
             <div class="col-md-12 email">
                 <h3 id="email" class="text"><b>Email: </b>{{ user.email }}</h3>
-            </div>
-            <div class="col-md-12 email">
-                <h3 id="first_name" class="text"><b>Prenom: </b>{{ user.first_name }}</h3>
-            </div>
-            <div class="col-md-12 email">
-                <h3 id="last_name" class="text"><b>Nom: </b>{{ user.last_name }}</h3>
-            </div>
-             <div class="col-md-12 email">
-                <h3><a href="#" id="change" class="text">Modifier mes infos</a></h3>
             </div>
          </div>
 
