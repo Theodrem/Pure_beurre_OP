@@ -27,7 +27,6 @@ class RegisterForm(forms.Form):
         If email already exists.
         Displays the error message.
         """
-        username = self.cleaned_data.get("username")
         email = self.cleaned_data.get("email")
         if email and User.objects.filter(email=email).exists():
             raise forms.ValidationError("Email déjà utilisé.")
@@ -41,7 +40,6 @@ class RegisterForm(forms.Form):
         Displays the error message.
         """
         username = self.cleaned_data.get("username")
-        email = self.cleaned_data.get("email")
         if username and User.objects.filter(username=username).exists():
             raise forms.ValidationError("Nom d'utilisateur déjà utilisé.")
         return username
@@ -60,4 +58,16 @@ class LoginForm(forms.Form):
         if not User.objects.filter(username=username).exists():
             raise forms.ValidationError("Le nom d'utilisateur %s n'existe pas" % username)
 
+
+class ForgotForm(forms.Form):
+    email = forms.EmailField(label="", widget=forms.EmailInput(attrs={'placeholder': 'Entre ton email', 'class': 'form-control'}), max_length=100)
+
+    def check_email_exist(self):
+        """
+        If email already exists.
+        Displays the error message.
+        """
+        email = self.cleaned_data.get("email")
+        if not email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Aucun utilisateur ne possède cet email.")
 

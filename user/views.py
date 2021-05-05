@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .form import RegisterForm, LoginForm
+from .form import RegisterForm, LoginForm, ForgotForm
 
 
 class Dashboard(View):
@@ -118,3 +118,12 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/login')
+
+
+class ForgotPassword(View):
+    form = ForgotForm
+    template_name = "user/forgot_password.html"
+
+    def get(self, request):
+        form = self.form
+        return render(request, self.template_name, {'form': form, 'Title': 'Récuperation mot de passe'})
