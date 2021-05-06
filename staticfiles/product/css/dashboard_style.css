@@ -30,6 +30,20 @@ h1 {
     height: 300px;
 }
 
+#change {
+    color: white;
+    text-decoration: none;
+}
+
+#change:hover {
+    font-weight: bold;
+    color: #grey;
+}
+
+.text {
+    font-family: "Scope One", sans-serif;
+}
+
 @media screen and (max-width: 750px) {
 .head {
     height: 350px;
