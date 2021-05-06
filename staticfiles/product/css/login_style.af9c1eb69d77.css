@@ -33,7 +33,7 @@ form {
     margin-top: 20px !important;
 }
 
-#create {
+.link {
     text-decoration: none;
     color: black;
     font-family: "Scope One", sans-serif;
