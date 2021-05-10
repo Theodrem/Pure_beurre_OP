@@ -12,7 +12,7 @@ from django.utils.decorators import method_decorator
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
-from .form import RegisterForm, LoginForm, ForgotForm
+from .form import RegisterForm, LoginForm, ForgotForm, ResetPasswordForm
 
 
 class Dashboard(View):
@@ -157,8 +157,24 @@ class ForgotPassword(View):
 
 class ResetPassword(View):
     template_name = "user/reset_password.html"
+    form = ResetPasswordForm
 
     def get(self, request):
-        return render(request, self.template_name, {'Title': 'Récuperation mot de passe'})
+
+        form = self.form
+        return render(request, self.template_name, {'form': form, 'Title': 'Récuperation mot de passe'})
+
+    def post(self, request):
+        if request.method == 'POST':
+            form = self.form(request.POST)
+            if form.is_valid():
+                new_password = form.data.get('password')
+                messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
+
+        else:
+            form = self.form()
+
+        return render(request, self.template_name, {'form': form})
+
 
 

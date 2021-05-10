@@ -7,5 +7,5 @@ urlpatterns = [
     path("logout/", Logout.as_view(), name='logout_view'),
     path("dashboard/", Dashboard.as_view(), name='dashboard_view'),
     path("forgot_password/", ForgotPassword.as_view(), name="forgot_view"),
-    path("rest_password/", ResetPassword.as_view(), name="reset_view")
+    path("reset_password/", ResetPassword.as_view(), name="reset_view")
 ]
