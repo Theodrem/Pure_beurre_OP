@@ -1,8 +1,7 @@
 import logging
-
 from django.core.mail import send_mail
 from django.conf import settings
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
 from django.contrib import messages
@@ -10,6 +9,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from .form import RegisterForm, LoginForm, ForgotForm
 
@@ -136,17 +137,28 @@ class ForgotPassword(View):
             form = self.form(request.POST)
             if form.is_valid():
                 email_user = form.data.get('email')
-                subject = 'Récupération de votre mot de passe'
 
-                message = ' it  means a world to us '
+                user = User.objects.get(email=email_user)
+
+                subject = 'Récupération de votre mot de passe'
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [email_user, ]
+                html_message = render_to_string('user/email_content.html', {'user': user})
+                plain_message = strip_tags(html_message)
 
-                send_mail(subject, message, email_from, recipient_list)
+                send_mail(subject, plain_message, email_from, recipient_list, html_message=html_message)
+
                 messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
         else:
             form = self.form()
 
         return render(request, self.template_name, {'form': form})
+
+
+class ResetPassword(View):
+    template_name = "user/reset_password.html"
+
+    def get(self, request):
+        return render(request, self.template_name, {'Title': 'Récuperation mot de passe'})
 
 
