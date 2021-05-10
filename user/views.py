@@ -1,5 +1,8 @@
 import logging
-from django.http import HttpResponseRedirect
+
+from django.core.mail import send_mail
+from django.conf import settings
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views import View
 from django.shortcuts import render
 from django.contrib import messages
@@ -127,3 +130,23 @@ class ForgotPassword(View):
     def get(self, request):
         form = self.form
         return render(request, self.template_name, {'form': form, 'Title': 'Récuperation mot de passe'})
+
+    def post(self, request):
+        if request.method == 'POST':
+            form = self.form(request.POST)
+            if form.is_valid():
+                email_user = form.data.get('email')
+                subject = 'Récupération de votre mot de passe'
+
+                message = ' it  means a world to us '
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [email_user, ]
+
+                send_mail(subject, message, email_from, recipient_list)
+                messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
+        else:
+            form = self.form()
+
+        return render(request, self.template_name, {'form': form})
+
+
