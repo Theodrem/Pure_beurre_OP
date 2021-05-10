@@ -149,6 +149,7 @@ class ForgotPassword(View):
                 send_mail(subject, plain_message, email_from, recipient_list, html_message=html_message)
 
                 messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
+                return render(request, self.template_name, {'form': form})
         else:
             form = self.form()
 
