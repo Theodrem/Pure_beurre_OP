@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Hello! {{ user.username  }}</h1>
-<h3>Changer votre mot de passe:</h3><p><a href="http://127.0.0.1:8000/{% url 'reset_view' %}" target="_blank">Nuveau mot de passe</a></p>
+<h3>Changer votre mot de passe:</h3><p><a href="http://127.0.0.1:8000{% url 'reset_view' user.id %}" target="_blank">Nouveau mot de passe</a></p>
 </body>
 </html>
