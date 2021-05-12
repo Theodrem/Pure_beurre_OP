@@ -134,25 +134,22 @@ class ForgotPassword(View):
 
     def post(self, request):
         if request.method == 'POST':
+
             form = self.form(request.POST)
             if form.is_valid():
                 email_user = form.data.get('email')
-
                 user = User.objects.get(email=email_user)
-
                 subject = 'Récupération de votre mot de passe'
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [email_user, ]
                 html_message = render_to_string('user/email_content.html', {'user': user})
                 plain_message = strip_tags(html_message)
-
                 send_mail(subject, plain_message, email_from, recipient_list, html_message=html_message)
 
                 messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
                 return render(request, self.template_name, {'form': form})
         else:
             form = self.form()
-
         return render(request, self.template_name, {'form': form})
 
 
@@ -161,17 +158,14 @@ class ResetPassword(View):
     form = ResetPasswordForm
 
     def get(self, request):
-
         form = self.form
-        return render(request, self.template_name, {'form': form, 'Title': 'Récuperation mot de passe'})
+        return render(request, self.template_name, {'form': form, 'title': 'Récuperation mot de passe'})
 
     def post(self, request):
         if request.method == 'POST':
             form = self.form(request.POST)
             if form.is_valid():
-                new_password = form.data.get('password')
                 messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
-
         else:
             form = self.form()
 
