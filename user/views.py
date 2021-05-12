@@ -1,4 +1,5 @@
 import logging
+import os
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -19,6 +20,7 @@ class Dashboard(View):
     """
     Page Dashboard
     """
+
     @method_decorator(login_required, name='dispatch')
     def get(self, request):
         current_user = request.user
@@ -119,6 +121,7 @@ class Logout(View):
     If the user is logged in, he can log out.
     The user is redirect on login page.
     """
+
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/login')
@@ -139,10 +142,13 @@ class ForgotPassword(View):
             if form.is_valid():
                 email_user = form.data.get('email')
                 user = User.objects.get(email=email_user)
+                url_pure_beurre = os.environ.get("URL_PURE_BEURRE")
+
                 subject = 'Récupération de votre mot de passe'
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [email_user, ]
-                link = f"http://127.0.0.1:8000/reset_password/?email={email_user}"
+
+                link = f"{url_pure_beurre}reset_password/?email={email_user}"
                 html_message = render_to_string('user/email_content.html', {'user': user, "link": link})
                 plain_message = strip_tags(html_message)
                 send_mail(subject, plain_message, email_from, recipient_list, html_message=html_message)
@@ -150,6 +156,9 @@ class ForgotPassword(View):
                 messages.add_message(request, messages.INFO, "L'email de récupération à été envoyée")
 
                 return render(request, self.template_name, {'form': form})
+            else:
+                messages.add_message(request, messages.INFO, "l'email n'est pas valide")
+
         else:
             form = self.form()
         return render(request, self.template_name, {'form': form})
@@ -166,7 +175,7 @@ class ResetPassword(View):
             user = User.objects.get(email=email)
             login(request, user)
         except User.DoesNotExist:
-           pass
+            pass
 
         return render(request, self.template_name, {'form': form, 'title': 'Récuperation mot de passe'})
 
@@ -185,8 +194,3 @@ class ResetPassword(View):
             form = self.form()
 
         return render(request, self.template_name, {'form': form})
-
-
-
-
-
