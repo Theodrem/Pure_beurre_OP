@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(label="Nom d'utilisateur", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
-    first_name = forms.CharField(label="Prenom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    username = forms.CharField(label="Nom d'utilisateur  *", widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
+    first_name = forms.CharField(label="Prenom  ", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
     last_name = forms.CharField(label="Nom", required=False, widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=100)
-    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
-    password = forms.CharField(label="Mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
-    repassword = forms.CharField(label=" Confirmation mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
+    email = forms.EmailField(label="Email  *", widget=forms.EmailInput(attrs={'class': 'form-control'}), max_length=100)
+    password = forms.CharField(label="Mot de passe(minimum 8 caractèes) *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
+    repassword = forms.CharField(label=" Confirmation mot de passe  *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean(self):
         """
@@ -17,8 +17,8 @@ class RegisterForm(forms.Form):
         Displays the error message
         """
         cleaned_data = super(RegisterForm, self).clean()
-        val_pwd = cleaned_data['password']
-        repassword = cleaned_data['repassword']
+        val_pwd = cleaned_data.get('password')
+        repassword = cleaned_data.get('repassword')
         if val_pwd != repassword:
             raise forms.ValidationError("Les mots de passes ne correspondent pas")
 
@@ -76,7 +76,7 @@ class ForgotForm(forms.Form):
 
 
 class ResetPasswordForm(forms.Form):
-    password = forms.CharField(label="Mot de passe(minimum 8 caractères) *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
+    password = forms.CharField(label="Mot de passe(minimum 8 caractèes) *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
     repassword = forms.CharField(label=" Confirmation mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
 
     def clean(self):
@@ -85,8 +85,8 @@ class ResetPasswordForm(forms.Form):
         Displays the error message
         """
         cleaned_data = super(ResetPasswordForm, self).clean()
-        val_pwd = cleaned_data['password']
-        repassword = cleaned_data['repassword']
+        val_pwd = cleaned_data.get('password')
+        repassword = cleaned_data.get('repassword')
         if val_pwd != repassword:
             raise forms.ValidationError("Les mots de passes ne correspondent pas")
 
