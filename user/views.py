@@ -181,8 +181,9 @@ class ResetPassword(View):
 
     def post(self, request):
         if request.method == 'POST':
-            form = self.form(request.POST)
+            form = self.form(request.POST) #passer l'email
             if form.is_valid():
+                user = User.objects.get(email=email)
                 password = form.data.get('password')
                 current_user = request.user
                 current_user.set_password(password)
