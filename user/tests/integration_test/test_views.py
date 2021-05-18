@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.core import mail
+
 from django.contrib.auth.models import User
 
 
@@ -107,7 +109,5 @@ class TestAnonymousViews(TestCase):
         user = User.objects.get(username="user_test")
         self.assertIsInstance(user, User)
         self.assertNotIn('_auth_user_id', self.client.session)
-
-
 
 

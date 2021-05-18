@@ -40,8 +40,8 @@ class TestForms(TestCase):
             "first_name": "",
             "last_name": "",
             "email": "email@hotmail.fr",
-            "password": "password",
-            "repassword": "password"
+            "password": "Salut_password2001",
+            "repassword": "Salut_password2001"
         })
         self.assertTrue(form.is_valid())
 
