@@ -2,9 +2,8 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from django.urls import reverse
-from product.models import Product, Category, Substitute
+from product.models import Product, Category
 from django.contrib.auth.models import User
-
 
 
 class MySeleniumTests(StaticLiveServerTestCase):
@@ -93,12 +92,3 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.assertEquals(self.browser.current_url, url)
 
         time.sleep(10)
-
-
-
-
-        # plan de test
-
-        # generer test
-
-        # nettoyer repo

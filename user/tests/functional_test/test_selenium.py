@@ -42,8 +42,8 @@ class MySeleniumTests(StaticLiveServerTestCase):
 
         username.send_keys("new_username")
         email.send_keys("email@hotmail.fr")
-        passwd.send_keys("password")
-        repasswd.send_keys("password")
+        passwd.send_keys("test_pass_word12")
+        repasswd.send_keys("test_pass_word12")
         self.browser.execute_script("arguments[0].click();", button_form)
 
         url = self.live_server_url + reverse("dashboard_view")
@@ -55,3 +55,20 @@ class MySeleniumTests(StaticLiveServerTestCase):
         self.assertEquals(len(all_users), 2)
 
         time.sleep(5)
+
+    def test_reset_password(self):
+        self.browser.get(self.live_server_url + "/reset_password/")
+        email = self.browser.find_element_by_xpath('//*[@id="id_email"]')
+        button_form = self.browser.find_element_by_xpath('//*[@id="submit"]')
+
+        email.send_keys("email_bidon@bidon.fr")
+        self.browser.execute_script("arguments[0].click();", button_form)
+
+        time.sleep(5)
+
+
+
+
+
+
+
