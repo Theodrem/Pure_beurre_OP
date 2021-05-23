@@ -18,20 +18,11 @@
                 <img id="remy" src="{% static 'product/assets/img/remy.jpg' %}" alt="" >
             </div>
             <div class="col-md-6">
-               <form id=form action="{% url 'login_view' %}" method="post">
+               <form action="{% url 'login_view' %}" method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-success" id="submit">Valider</button>
                 </form>
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            {% if message.tags %}
-                                <li>{{ message }}</li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                {% endif %}
                 <h6 class="create"><a href="{% url 'reset_password' %}" class="link">Mot de passe oublié?</a></h6>
                 <h6 class="create">Pas de compte?<a href="{% url 'register_view' %}" class="link">  Créer un compte</a></h6>
             </div>
