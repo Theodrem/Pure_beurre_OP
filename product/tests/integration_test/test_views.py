@@ -53,7 +53,7 @@ class TestViews(TestCase):
         response = self.client.get(reverse('index_view'))
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, "Colette et Remy")
-        self.assertTemplateUsed(response, "product/inex.html")
+        self.assertTemplateUsed(response, "product/index.html")
 
     def test_research_results(self):
         """
