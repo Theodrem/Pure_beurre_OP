@@ -94,6 +94,9 @@ class MySeleniumTests(StaticLiveServerTestCase):
         button_form = self.browser.find_element_by_xpath('//*[@id="submit"]')
         self.browser.execute_script("arguments[0].click();", button_form)
 
+        self.client.login(username="username_test", password="pologne102")
+        self.assertIn('_auth_user_id', self.client.session)
+
         time.sleep(5)
 
 
