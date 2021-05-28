@@ -1,7 +1,4 @@
 import logging
-import os
-from django.core.mail import send_mail
-from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.views import View
 from django.shortcuts import render
@@ -10,10 +7,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
-from .form import RegisterForm, LoginForm, ForgotForm, ResetPasswordForm
+from .form import RegisterForm, LoginForm
 
 
 class Dashboard(View):
