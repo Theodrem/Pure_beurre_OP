@@ -61,32 +61,3 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Le nom d'utilisateur %s n'existe pas" % username)
 
 
-class ForgotForm(forms.Form):
-    email = forms.EmailField(label="", widget=forms.EmailInput(attrs={'placeholder': 'Entre ton email', 'class': 'form-control'}), max_length=100)
-
-    def clean_email(self):
-        """
-        If email already exists.
-        Displays the error message.
-        """
-        email = self.cleaned_data.get("email")
-        if not User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Cet email n'existe pas.")
-        return email
-
-
-class ResetPasswordForm(forms.Form):
-    password = forms.CharField(label="Mot de passe(minimum 8 caractèes) *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), validators=[validate_password], max_length=100)
-    repassword = forms.CharField(label=" Confirmation mot de passe *", widget=forms.PasswordInput(attrs={'class': 'form-control'}), max_length=100)
-
-    def clean(self):
-        """
-        If password and repassword doesn't match.
-        Displays the error message
-        """
-        cleaned_data = super(ResetPasswordForm, self).clean()
-        val_pwd = cleaned_data.get('password')
-        repassword = cleaned_data.get('repassword')
-        if val_pwd != repassword:
-            raise forms.ValidationError("Les mots de passes ne correspondent pas")
-
